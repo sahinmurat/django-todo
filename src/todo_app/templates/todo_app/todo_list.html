@@ -2,20 +2,14 @@
 
 
 {% block content %}
-<div>
-    <h3>Todo List</h3>
-    <ul>
-        {% for todo in todos %}
-        
-        <a href=" {% url 'update' todo.id %} ">
-            {% if todo.completed  %}
-        <li><del> {{ todo }}</del></li>
-        {% else %}
-        
-        <li>{{ todo }}</li>
-        {% endif %}
-    </a>
-        {% endfor %}
-    </ul>
-</div>
+
+<h1> Here is the list page</h1>
+<ul>
+{% for todo in todo %}
+<li> {{ todo}} </li>
+
+{% endfor %}
+</ul>
+    
 {% endblock content %}
+    

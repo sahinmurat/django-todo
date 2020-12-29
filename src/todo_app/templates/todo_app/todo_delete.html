@@ -2,14 +2,12 @@
 
 
 {% block content %}
-  
-  <form action="", method="POST">
-    {{ form.as_p}}
+
+<form action="" method="POST">
     {% csrf_token %}
-    <p>Are you sure to delete it {{todo}}</p>
-    <input type="submit" value="delete">
-    <a href="{% url 'list' %}">  <button>cancel</button> </a>
-    <input type="submit" value="delete">
-  </form>
+{{ todo }}
+<input type="submit" value="Delete">
+</form>
+    
 {% endblock content %}
     

@@ -7,24 +7,26 @@ from .models import Todo
 def home(request):
     return render(request, 'todo_app/home.html')
 
-def todo_list(request):
-    todos = Todo.objects.all()
+def list(request):
+    todo = Todo.objects.all()
     context = {
-        'todos' : todos
+        'todo': todo
     }
     return render(request, 'todo_app/todo_list.html', context)
-
+    
 def todo_create(request):
     form = TodoAddForm()
-    if request.method == 'POST':
-        form = TodoAddForm(request.POST)
+    if(request.method == 'POST' ):
+        form= TodoAddForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('list')
-    context= {
-        'form': form
-    }
-    return render(request, 'todo_app/todo_create.html', context)
+    context = {
+            'form' : form 
+        }
+    return render(request, 'todo_app/todo_create.html', context )
+        
+
 
 def todo_update(request, id):
     todo = get_object_or_404(Todo, id=id)
@@ -41,10 +43,10 @@ def todo_update(request, id):
 
 def todo_delete(request, id):
     todo = get_object_or_404(Todo, id=id)
-    if request.method == "POST":
+    if request.method == 'POST':
         todo.delete()
-        return redirect("list")
+        return redirect('list')
     context = {
-        todo:'todo'
+        'todo':todo
     }
-    return render(request, "todo_app/todo_delete.html", context) 
+    return render(request,'todo_app/todo_delete.html', context)
